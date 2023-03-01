@@ -4,9 +4,10 @@
 // Randomness through a DiceRroll for the damage that the opponents do, along with whether you get to use your special or not?
 // Each character has
 
-
+import java.util.Scanner;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+;
 
 class Main {
     public static void main(String[] args) {
@@ -41,7 +42,20 @@ class Main {
         System.out.println("You wake up un a dark forrest, glimpse of sunlight shines through the draping canopies, there's a stick within reach ");
         System.out.println("Ahh, you leap backwards as a bright beam of light dashes into your eye. In the corner of a near tree, you notice a silver sword glistening in the sunlight.");
         System.out.println("Now it's your turn: CHOOSE YOUR DESTINY! ");
-        System.out.print("The ancient wooden stick? OR The Newly-Polished Silver Sword?");
+        System.out.println("The ancient wooden stick? OR The Newly-Polished Silver Sword?");
+
+//        for (int i = 1; playerNum != i; i++) {
+//
+//            System.out.println("Player " + i + " are you choosing a stick or the mighty sword?");
+//            String stickOrSword = UserInput.nextLine();
+//
+//            if(stickOrSword.equals("Stick")){
+//                pla.playerAttack += 50;
+//            }
+//            else
+//
+//
+//        }
 
         // String StickOrSword = UserInput.nextLine();
 
