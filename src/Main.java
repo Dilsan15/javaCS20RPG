@@ -10,28 +10,42 @@ import java.util.ArrayList;
 
 class Main {
     public static void main(String[] args) {
-      //  Scanner UserInput = new Scanner(System.in);
+        Scanner UserInput = new Scanner(System.in);
 
-        System.out.println("You wake up un a dark forrest, glimpse of sunlight shines through the draping canopies, there's a stick within reach ");
-        System.out.println("Ahh, you leap backwards as a bright beam of light dashes into your eye. In the corner of a near tree, you notice a silver sword glistening in the sunlight.");
-        // Now add code on whether you take the tree or sword
-        System.out.println("Now it's your turn: CHOOSE YOUR DESTINY! ");
-        System.out.print("The ancient wooden stick? OR The Newly-Polished Silver Sword?");
+        //ask input for how many players are needed
 
-       // String StickOrSword = UserInput.nextLine();
+        System.out.println("How many players would be like -- 1,2, or 3:");
+        int playerNum = UserInput.nextInt();
 
-        int playerNum = 2;
+
 
         ArrayList<userPlayer> gamePlayers = new ArrayList<userPlayer>();
 
-        for (int i = 0; playerNum != i; i++) {
-            gamePlayers.add(new userPlayer("Dilshaan" + i, "attack"));
+        for (int i = 1; playerNum != i + 1; i++) {
+
+
+            // Ask player for name and attack using scanner copilot
+            System.out.println("Player " + i + " what is your name?");
+            String userName = UserInput.nextLine();
+
+            System.out.println("Player " + i + " what is your special? (attack, health, defense)");
+            String userSpecial = UserInput.nextLine();
+
+            gamePlayers.add(new userPlayer(userName, userSpecial));
+
+            System.out.println("Hello " + userName + " your special is " + userSpecial);
+
         }
 
-        System.out.println(gamePlayers);
 
-         String[] choices = new String[]{"23", "3"};
-         System.out.println(gameControl.inputValidation(choices, "1"));
+        System.out.println("You wake up un a dark forrest, glimpse of sunlight shines through the draping canopies, there's a stick within reach ");
+        System.out.println("Ahh, you leap backwards as a bright beam of light dashes into your eye. In the corner of a near tree, you notice a silver sword glistening in the sunlight.");
+        System.out.println("Now it's your turn: CHOOSE YOUR DESTINY! ");
+        System.out.print("The ancient wooden stick? OR The Newly-Polished Silver Sword?");
+
+        // String StickOrSword = UserInput.nextLine();
+
+
 
     }
 }

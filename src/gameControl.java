@@ -1,5 +1,4 @@
-import javax.xml.stream.FactoryConfigurationError;
-import java.util.ArrayList;
+
 import java.util.Random;
 
 
@@ -7,13 +6,24 @@ public class gameControl {
 
     static Random rand = new Random();
 
-    public static boolean inputValidation(String[] userInputOp, String userInput) {
+    public static boolean inputValidation(String[] userInputOp, String userInput, String typeVal) {
 
-        for (String posInput : userInputOp) {
-            if (posInput.toLowerCase().strip().equals(userInput)) {
-                return true;
+        if (typeVal == "int") {
+            try {
+                Integer.parseInt(userInput);
+            } catch (NumberFormatException e) {
+                return false;
             }
         }
+
+        if (typeVal == "str") {
+            for (String posInput : userInputOp) {
+                if (posInput.toLowerCase().strip().equals(userInput)) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 
