@@ -4,62 +4,51 @@
 // Randomness through a DiceRroll for the damage that the opponents do, along with whether you get to use your special or not?
 // Each character has
 
-import java.util.Scanner;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-;
-
 class Main {
+
+    static userPlayer uPlayer;
+
     public static void main(String[] args) {
-        Scanner UserInput = new Scanner(System.in);
 
-        //ask input for how many players are needed
+        uPlayer = userIntro();
+        storyIntro();
+    }
 
-        System.out.println("How many players would be like -- 1,2, or 3:");
-        int playerNum = UserInput.nextInt();
+    public static userPlayer userIntro() {
 
+        String userName = gameControl.strInputValidation(new String[]{""}, "What is your name?");
+        userName= userName.substring(0,1).toUpperCase()+userName.substring(1).toLowerCase();
+        String userSpecial = gameControl.strInputValidation(new String[]{"attack", "health", "defense"}, "Player what is your special? (attack, health, defense)");
 
+        System.out.println("Hello " + userName + " your special is " + userSpecial);
 
-        ArrayList<userPlayer> gamePlayers = new ArrayList<userPlayer>();
+        return new userPlayer(userName, userSpecial);
 
-        for (int i = 1; playerNum != i + 1; i++) {
+    }
 
-
-            // Ask player for name and attack using scanner copilot
-            System.out.println("Player " + i + " what is your name?");
-            String userName = UserInput.nextLine();
-
-            System.out.println("Player " + i + " what is your special? (attack, health, defense)");
-            String userSpecial = UserInput.nextLine();
-
-            gamePlayers.add(new userPlayer(userName, userSpecial));
-
-            System.out.println("Hello " + userName + " your special is " + userSpecial);
-
-        }
-
-
+    public static void storyIntro() {
+        uPlayer.playerInventoryStats();
         System.out.println("You wake up un a dark forrest, glimpse of sunlight shines through the draping canopies, there's a stick within reach ");
         System.out.println("Ahh, you leap backwards as a bright beam of light dashes into your eye. In the corner of a near tree, you notice a silver sword glistening in the sunlight.");
         System.out.println("Now it's your turn: CHOOSE YOUR DESTINY! ");
         System.out.println("The ancient wooden stick? OR The Newly-Polished Silver Sword?");
 
-//        for (int i = 1; playerNum != i; i++) {
-//
-//            System.out.println("Player " + i + " are you choosing a stick or the mighty sword?");
-//            String stickOrSword = UserInput.nextLine();
-//
-//            if(stickOrSword.equals("Stick")){
-//                pla.playerAttack += 50;
-//            }
-//            else
-//
-//
-//        }
+        String stickOrSword = gameControl.strInputValidation(new String[]{"Stick", "Sword"}, "Player " + uPlayer.CharacterName + ", what is your ultimate choice? (Stick, OR Sword)");
+         if (stickOrSword.equals("stick")){
+             System.out.println("You feel the power of the ancient wooden stick in your hard, feeling its power surge" +
+                     "thourgh your hands");
+             uPlayer.playerInventoryAdd("Stick", 50);
+         } else {
+            System.out.println ("You gain 200 attack!");
+            System.out.println ("... But you accidentally cut yourself -- losing 150 health!");
 
-        // String StickOrSword = UserInput.nextLine();
-
+            uPlayer.playerInventoryAdd("Attack Sword", 200);
+            uPlayer.damageTaken(150);
+            uPlayer.playerInventoryStats();
+        }
 
 
     }
+
+
 }

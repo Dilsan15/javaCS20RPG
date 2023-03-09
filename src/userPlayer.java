@@ -1,33 +1,46 @@
-import java.util.Objects;
-import java.util.Random;
-
-public class userPlayer extends gameControl{
+import java.util.*;
+import java.util.HashMap;
 
 
-    String playerName;
+public class userPlayer extends charPlayer {
 
-    String playerSpecial;
 
-    int playerHealth;
-    int playerAttack;
-    int playerDefense;
+    HashMap<String, Integer> playerInventory;
+
 
     public userPlayer(String playerName, String playerSpecial) {
+        super(playerName, new int[]{150, 500, 100, 300, 1, 20});
 
-        this.playerName = playerName;
-
-        this.playerHealth = randomNum(100,300);
-        this.playerAttack = randomNum(100,500);
-        this.playerDefense = randomNum(1,20);
+        this.playerInventory = new HashMap<>();
 
         if (Objects.equals(playerSpecial, "attack")) {
-            this.playerAttack += 150;
-        } else if (Objects.equals(playerSpecial, "health")) {
-            this.playerHealth += 150;
-        } else if (Objects.equals(playerSpecial, "defense")) {
-            this.playerDefense += 10;
+            this.CharacterAttack += 150;
+        } else if (Objects.equals(playerName, "health")) {
+            this.CharacterHealth += 150;
+        } else if (Objects.equals(playerName, "defense")) {
+            this.CharacterDefense += 10;
         }
-
     }
 
+    public void playerInventoryStats() {
+        System.out.println("You have the following items in your inventory: " + this.playerInventory);
+        System.out.println("Your current stats are: " +
+                this.CharacterHealth + " health, "
+                + this.CharacterAttack + " attack, "
+                + this.CharacterDefense + " defense.");
+    }
+
+
+    public void playerInventoryAdd(String item, int value) {
+        this.playerInventory.put(item, value);
+    }
+
+    public void playerInventoryRemove(String item) {
+        this.playerInventory.remove(item);
+    }
+
+
 }
+
+
+
