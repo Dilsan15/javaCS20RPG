@@ -6,7 +6,7 @@ public class userPlayer extends charPlayer {
 
 
     HashMap<String, Integer> playerInventory;
-
+    int playerExp;
 
     public userPlayer(String playerName, String playerSpecial) {
         super(playerName, new int[]{150, 500, 100, 300, 1, 20});
@@ -20,6 +20,9 @@ public class userPlayer extends charPlayer {
         } else if (Objects.equals(playerName, "defense")) {
             this.CharacterDefense += 10;
         }
+
+        this.playerExp = 0;
+
     }
 
     public void playerInventoryStats() {
@@ -36,6 +39,7 @@ public class userPlayer extends charPlayer {
     }
 
     public void playerInventoryRemove(String item) {
+
         this.playerInventory.remove(item);
     }
 

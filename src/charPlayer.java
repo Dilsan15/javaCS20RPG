@@ -26,7 +26,7 @@ public class charPlayer extends gameControl {
         checkLiving();
     }
 
-    public void checkLiving() throws FileNotFoundException {
+    public void checkLiving() {
         if (this.CharacterHealth <= 0) {
             System.out.println("💀 Death has landed upon you. We are sending you back -- make wiser choices!");
             Main.main(null);
