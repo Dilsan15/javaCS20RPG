@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 
-public class gameControl {
+class GameControl extends Thread {
 
     final static Scanner scanInput = new Scanner(System.in);
     static Random rand = new Random();
@@ -19,7 +19,7 @@ public class gameControl {
         }
 
         System.out.println("Please enter valid input, the choices are: " + String.join(", ", userInputOp));
-        return gameControl.strInputValidation(userInputOp, inputPrompt);
+        return GameControl.strInputValidation(userInputOp, inputPrompt);
     }
 
     public static int intInputValidation(int[] userInputOp, String inputPrompt) {
@@ -40,15 +40,13 @@ public class gameControl {
         }
 
         System.out.println("Please enter a number, from the range of, " + userInputOp[0] + "-" + userInputOp[userInputOp.length - 1] + ":");
-        return gameControl.intInputValidation(userInputOp, inputPrompt);
+        return GameControl.intInputValidation(userInputOp, inputPrompt);
 
     }
 
     public static int randomNum(int min, int max) {
         return rand.nextInt(max - min) + min;
     }
-
-
 
 
 }
