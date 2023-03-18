@@ -9,12 +9,12 @@ class GameControl extends Thread {
     static Random rand = new Random();
 
     public static String strInputValidation(String[] userInputOp, String inputPrompt) {
-        System.out.println(inputPrompt);
+        System.out.print(inputPrompt);
         String userInput = scanInput.nextLine().strip().toLowerCase();
 
         for (String posInput : userInputOp) {
             if (posInput.toLowerCase().strip().equals(userInput.toLowerCase().strip()) || (userInputOp[0].equals(""))) {
-                return userInput;
+                return userInput.substring(0, 1).toUpperCase() + userInput.substring(1).toLowerCase();
             }
         }
 

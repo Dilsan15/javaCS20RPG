@@ -19,15 +19,15 @@ class CharPlayer extends GameControl {
         return new String[]{this.characterName, String.valueOf(this.characterHealth), String.valueOf(this.characterAttack), String.valueOf(this.characterDefense)};
     }
 
+
     public void damageTaken(int damage) throws FileNotFoundException {
         this.CharacterHealth -= damage * (1 - +(this.CharacterDefense / 100));
         checkLiving();
     }
 
+    void attackChar(CharPlayer dTarget, int weaponBoost) {
 
-    void attackChar(CharPlayer dTarget) {
-
-        if (randomNum(1, 4) < 3) {
+        if (randomNum(0, 5) < 4) {
             dTarget.damageTaken(this.characterAttack);
         } else {
             System.out.println(this.characterName + " missed their attack! on " + dTarget.characterName);

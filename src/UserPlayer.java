@@ -25,10 +25,14 @@ public class userPlayer extends charPlayer {
     }
 
 
-
-
     void playerInventoryStats() {
-        System.out.println("You have the following items in your inventory: " + this.playerInventory);
+        System.out.println("You have the following elements in your inventory:");
+
+        for (Map.Entry<String, int[]> entry : this.playerInventory.entrySet()) {
+            System.out.println(entry.getKey() + " " + Arrays.toString(entry.getValue()));
+        }
+
+
         System.out.println("Your current stats are: " +
                 this.characterHealth + " health, "
                 + this.characterAttack + " attack, "
@@ -37,36 +41,37 @@ public class userPlayer extends charPlayer {
 
 
     // Getters and setters for changing/viewing playerExp
-    void setPlayerExp(){
+    void setPlayerExp() {
         this.playerExp += 1;
     }
 
-    int getPlayerExp(){
+    int getPlayerExp() {
         return this.playerExp;
     }
 
     // Getters and Setters for the playerInventory
     void playerInventoryAdd(String item, int[] value) {
         this.playerInventory.put(item, value);
-    }
-    void playerInventoryRemove(String item) {
-        this.playerInventory.remove(item);
+        this.recalculateDefense();
     }
 
-    void viewPlayerInventory(){
-        assert true;
+    HashMap<String, int[]> viewPlayerInventory() {
+        return this.playerInventory;
     }
 
 
+    private void recalculateDefense() {
+        for (Map.Entry<String, int[]> entry : this.playerInventory.entrySet()) {
+            this.characterDefense += entry.getValue()[0];
+        }
+    }
 
-    private void checkLiving() {
+    void checkLiving() {
         if (this.characterHealth <= 0) {
             System.out.println("💀 Death has landed upon you. We are sending you back -- make wiser choices!");
             Main.main(null);
         }
     }
-
-
 
 
 }
