@@ -1,14 +1,13 @@
 class CharPlayer extends GameControl {
 
     String characterName;
-    String characterSpecial;
     int characterHealth;
     int characterAttack;
     int characterDefense;
 
-    public CharPlayer(String CharacterName, int[] ranges) {
+    public CharPlayer(String CharacterName, int[] statRanges) {
 
-        this.characterName = characterName;
+        this.characterName = CharacterName;
         this.characterHealth = randomNum(statRanges[0], statRanges[1]);
         this.characterAttack = randomNum(statRanges[2], statRanges[3]);
         this.characterDefense = randomNum(statRanges[4], statRanges[5]);
@@ -20,9 +19,8 @@ class CharPlayer extends GameControl {
     }
 
 
-    public void damageTaken(int damage) throws FileNotFoundException {
-        this.CharacterHealth -= damage * (1 - +(this.CharacterDefense / 100));
-        checkLiving();
+    public void damageTaken(int damage) {
+        this.characterHealth -= damage * (1 - +(this.characterDefense / 100));
     }
 
     void attackChar(CharPlayer dTarget, int weaponBoost) {

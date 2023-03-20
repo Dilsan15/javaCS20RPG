@@ -153,6 +153,7 @@ class Main {
 
 
             String bearScene = GameControl.strInputValidation(new String[]{"attack", "run", "feed"}, "Player " + uPlayer.characterName + " what would you like to do? (attack, run or feed)");
+            System.out.println(bearScene);
 
             switch (bearScene) {
                 case "Attack":
@@ -169,6 +170,7 @@ class Main {
 
                         buffBear.attackChar(uPlayer, 0);
                         System.out.println("The bear towering over you, and slashes its giant claw, dealing immense damage");
+                        uPlayer.checkLiving();
 
                     }
 
@@ -178,6 +180,7 @@ class Main {
                             "but the bear notices and hits you in the back of the head with its claw. You fall to your knees" +
                             "and watch in horror as the bear starts ripping your limbs off of your body with its teeth");
                     uPlayer.damageTaken(1000);
+                    uPlayer.checkLiving();
 
                     break;
                 case "Feed":
@@ -185,6 +188,7 @@ class Main {
                             "the food over to the animal. Good decision of waking it up and" +
                             "feeding it, its currently in the process of pulling your leg of and eating it");
                     uPlayer.damageTaken(1000);
+                    uPlayer.checkLiving();
                     break;
             }
 
