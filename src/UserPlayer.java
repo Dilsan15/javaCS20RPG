@@ -2,13 +2,13 @@ import java.util.*;
 import java.util.HashMap;
 
 
-public class userPlayer extends charPlayer {
+public class UserPlayer extends CharPlayer {
 
 
     private HashMap<String, int[]> playerInventory;
     private int playerExp;
 
-    UserPlayer(String playerName, String playerSpecial) {
+    public UserPlayer(String playerName, String playerSpecial) {
         super(playerName, new int[]{150, 500, 100, 300, 1, 20});
 
         this.playerInventory = new HashMap<>();
