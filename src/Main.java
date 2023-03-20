@@ -97,17 +97,17 @@ class Main {
                 case "Attack":
 
 
-                    while (!buffBear.enemyCheckLiving()) {
+                    while (!whiteMonster.enemyCheckLiving()) {
 
                         String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]), uPlayer.characterName + " Which weapon would you like to choose. ");
                         System.out.println(weaponOfChoice);
 
-                        uPlayer.attackChar(buffBear, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
+                        uPlayer.attackChar(whiteMonster, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
                         uPlayer.playerInventoryStats();
 
 
-                        buffBear.attackChar(uPlayer, 0);
-                        System.out.println("The bear towering over you, and slashes its giant claw, dealing immense damage");
+                        whiteMonster.attackChar(uPlayer, 0);
+                        System.out.println("The White Monster towering over you, and smashes it's paw against you -- dealing immense damage.");
                         uPlayer.checkLiving();
 
                     }
