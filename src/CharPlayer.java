@@ -6,7 +6,7 @@ class CharPlayer extends GameControl {
     int characterAttack;
     int characterDefense;
 
-    public charPlayer(String CharacterName, int[] ranges) {
+    public CharPlayer(String CharacterName, int[] ranges) {
 
         this.characterName = characterName;
         this.characterHealth = randomNum(statRanges[0], statRanges[1]);
