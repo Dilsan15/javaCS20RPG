@@ -14,6 +14,7 @@ class Main {
 
     public static void main(String[] args) {
         uPlayer = userIntro();
+        storyIntro();
 
 
 
@@ -46,13 +47,12 @@ class Main {
 
         System.out.println("Hello " + userName + " your special is " + userSpecial);
         return new UserPlayer(userName, userSpecial);
-
     }
 
-    public static void storyIntro() throws FileNotFoundException {
+    public static void storyIntro() {
         uPlayer.playerInventoryStats();
 
-        System.out.println("You wake up un a dark forrest, glimpse of sunlight shines through the draping canopies, there's a stick within reach ");
+        System.out.println("You wake up un a dark forest, glimpse of sunlight shines through the draping canopies, there's a stick within reach ");
         System.out.println("Ahh, you leap backwards as a bright beam of light dashes into your eye. In the corner of a near tree, you notice a silver sword glistening in the sunlight.");
         System.out.println("Now it's your turn: CHOOSE YOUR DESTINY! ");
         System.out.println("The ancient wooden stick? OR The Newly-Polished Silver Sword: ");
@@ -80,11 +80,57 @@ class Main {
         if (uPlayer.getPlayerExp() >= 3) {
             System.out.println(":) you fall of the edge of a giant cliff, get better luck!");
             System.out.println("Looks like no amount of experience can cure stupidly. You have died.");
-            uPlayer.damageTaken(1000);
+            uPlayer.damageTaken(-1000);
             uPlayer.checkLiving();
+            uPlayer.playerInventoryStats();
+
 
         } else {
-            System.out.println("You walk North, and notice a huge cliff. In fright you back off");
+            System.out.println("You walk North, noticing a huge cliff. In fright, you back off -- taking 1 XP with you!");
+            uPlayer.setPlayerExp();
+            uPlayer.setPlayerExp();
+            UserEnemy whiteMonster = new UserEnemy("White Monster", new int[]{0, 500, 0, 200, 0, 20});
+            String whiteMonsterScene = GameControl.strInputValidation(new String[]{"attack", "run"}, "Player " + uPlayer.characterName + " what would you like to do? (attack, run)");
+            System.out.println(whiteMonsterScene);
+
+            switch (whiteMonsterScene) {
+                case "Attack":
+
+
+                    while (!buffBear.enemyCheckLiving()) {
+
+                        String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]), uPlayer.characterName + " Which weapon would you like to choose. ");
+                        System.out.println(weaponOfChoice);
+
+                        uPlayer.attackChar(buffBear, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
+                        uPlayer.playerInventoryStats();
+
+
+                        buffBear.attackChar(uPlayer, 0);
+                        System.out.println("The bear towering over you, and slashes its giant claw, dealing immense damage");
+                        uPlayer.checkLiving();
+
+                    }
+
+                    break;
+                case "Run":
+                    System.out.println("You try running away, planning to dig out the tunnel as fast as possible," +
+                            "but the bear notices and hits you in the back of the head with its claw. You fall to your knees" +
+                            "and watch in horror as the bear starts ripping your limbs off of your body with its teeth");
+                    uPlayer.damageTaken(-1000);
+                    uPlayer.checkLiving();
+                    uPlayer.playerInventoryStats();
+                    break;
+                case "Feed":
+                    System.out.println("You frantically take out a small piece of leftover candy in your pocket, sliding" +
+                            "the food over to the animal. Good decision of waking it up and" +
+                            "feeding it, its currently in the process of pulling your leg of and eating it");
+                    uPlayer.damageTaken(-1000);
+                    uPlayer.checkLiving();
+                    uPlayer.playerInventoryStats();
+                    break;
+            }
+
         }
         return false;
     }
@@ -96,7 +142,7 @@ class Main {
         System.out.println("Realizing you don't know how to swim, you flail your arms in the empty space.");
         System.out.println("Losing 15 health gradually, a seashell swiftly lays your body on it's surface, and glides you to safety.");
         System.out.println("Grabbing this shell as a shield -- You gain 2% more Defense!");
-        uPlayer.damageTaken(15);
+        uPlayer.damageTaken(-15);
         uPlayer.checkLiving();
 
         uPlayer.playerInventoryAdd("Rigid Seashell Shield", new int[]{2, 1});
@@ -106,6 +152,7 @@ class Main {
     }
 
     public static void westStory() {
+        uPlayer.setPlayerExp();
         uPlayer.setPlayerExp();
         System.out.println("As you head West the terrain flattens, drier. The smothering hot sun slowly drying your skin out.");
         System.out.println("Your sweat and panting attracted some movement, a swarm of snakes rise out of the sand.");
@@ -117,14 +164,13 @@ class Main {
         };
 
         for (UserEnemy enemy : snakeList) {
-
             String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]),
                     uPlayer.characterName + " which weapon would you like to choose for the next snake: ");
 
             System.out.println(enemy.characterName + " lunges at you");
             enemy.attackChar(uPlayer, 0);
             uPlayer.checkLiving();
-
+            uPlayer.playerInventoryStats();
             System.out.println(weaponOfChoice);
 
             uPlayer.attackChar(enemy, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
@@ -134,12 +180,12 @@ class Main {
         }
 
         System.out.println("Power surges through your body, and your confidence grows, examining the dead snakes");
+        uPlayer.playerInventoryStats();
     }
 
     public static void southStory() {
-
-        if (uPlayer.getPlayerExp() >= 2) {
             uPlayer.setPlayerExp();
+        if (uPlayer.getPlayerExp() >= 2) {
             System.out.println("You've gained 1 XP! Welcome to the biome of the rocky giants!" +
                     "Here you'll meet the beautiful ranges of the Mount Alps, and all the mythical creatures they enclose.");
 
@@ -180,16 +226,17 @@ class Main {
                     System.out.println("You try running away, planning to dig out the tunnel as fast as possible," +
                             "but the bear notices and hits you in the back of the head with its claw. You fall to your knees" +
                             "and watch in horror as the bear starts ripping your limbs off of your body with its teeth");
-                    uPlayer.damageTaken(1000);
+                    uPlayer.damageTaken(-1000);
                     uPlayer.checkLiving();
-
+                    uPlayer.playerInventoryStats();
                     break;
                 case "Feed":
                     System.out.println("You frantically take out a small piece of leftover candy in your pocket, sliding" +
                             "the food over to the animal. Good decision of waking it up and" +
                             "feeding it, its currently in the process of pulling your leg of and eating it");
-                    uPlayer.damageTaken(1000);
+                    uPlayer.damageTaken(-1000);
                     uPlayer.checkLiving();
+                    uPlayer.playerInventoryStats();
                     break;
             }
 
@@ -197,7 +244,8 @@ class Main {
                     "for any challengers");
 
         } else {
-            System.out.println("You head a loud growling sound, frightened, you stumble back an instinctively run");
+            System.out.println("You head a loud growling sound, frightened, you stumble back an instinctively run -- taking 1 XP with you.");
+            uPlayer.setPlayerExp();
         }
 
 
