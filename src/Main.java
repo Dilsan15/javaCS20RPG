@@ -9,6 +9,7 @@ import java.util.Objects;
 
 class Main {
 
+    //Dilly explain the code pls
     private static UserPlayer uPlayer;
 
     public static void main(String[] args) {
@@ -110,7 +111,7 @@ class Main {
         System.out.println("Your sweat and panting attracted some movement, a swarm of snakes rise out of the sand.");
 
 
-        UserEnemy[] snakeList = new UserEnemy[]{new UserEnemy("Dhvanny The Snake", new int[]{0, 100, 0, 100, 0, 29}),
+        UserEnemy[] snakeList = new UserEnemy[]{new UserEnemy("Dhvanay The Snake", new int[]{0, 100, 0, 100, 0, 29}),
                 new UserEnemy("Damien The Snake", new int[]{0, 100, 0, 100, 0, 29}),
                 new UserEnemy("Dilshaan The Snake", new int[]{0, 100, 0, 100, 0, 29}),
         };
@@ -192,7 +193,7 @@ class Main {
                     break;
             }
 
-            System.out.println("You defeat the bear, and start digging your way out of the cave, glancing back occasionaly" +
+            System.out.println("You defeat the bear, and start digging your way out of the cave, glancing back occasionally " +
                     "for any challengers");
 
         } else {
