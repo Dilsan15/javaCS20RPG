@@ -118,7 +118,7 @@ class Main {
         for (UserEnemy enemy : snakeList) {
 
             String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]),
-                    uPlayer.characterName + " which weapon would you like to choose: ");
+                    uPlayer.characterName + " which weapon would you like to choose for the next snake: ");
 
             System.out.println(enemy.characterName + " lunges at you");
             enemy.attackChar(uPlayer, 0);
@@ -127,7 +127,7 @@ class Main {
             System.out.println(weaponOfChoice);
 
             uPlayer.attackChar(enemy, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
-            System.out.println(uPlayer.characterName + " kills" + enemy.characterName + " with " + weaponOfChoice);
+            System.out.println(uPlayer.characterName + " kills " + enemy.characterName + " with " + weaponOfChoice);
 
 
         }
