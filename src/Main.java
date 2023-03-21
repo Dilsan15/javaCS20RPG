@@ -211,11 +211,13 @@ class Main {
         System.out.println("Dun! Dun! Dun! Welcome to the most thrill you have ever experienced in your life."
                 + " Now that you've received various attack, health and armor upgrades \n-- let's see if you can make it out of this RPG!");
         System.out.println("Your final challenge is: Charizard from the Pokemon of Oz.");
+        finalBattleOptions();
+    }
+
+        private static void finalBattleOptions() {
         UserEnemy charizardEnemy = new UserEnemy("Charizard", new int[]{0, 820, 0, 200, 0, 16});
-
-        String bossScene = GameControl.strInputValidation(new String[]{"attack", "dodge", "retreat"}, "Player " + uPlayer.characterName + " be careful with your choices, Charizard will seriously burn you. (attack, dodge or feed)");
+        String bossScene = GameControl.strInputValidation(new String[]{"attack", "dodge", "retreat"}, "Player " + uPlayer.characterName + " be careful with your choices, Charizard will seriously burn you. (attack, dodge or retreat)");
         System.out.println(bossScene);
-
         switch (bossScene) {
             case "Attack" -> {
                 while (!charizardEnemy.enemyCheckLiving()) {
@@ -239,6 +241,7 @@ class Main {
                 charizardEnemy.attackCharDodge(uPlayer, 0);
                 uPlayer.checkLiving();
                 uPlayer.playerInventoryStats();
+                finalBattleOptions();
             }
             case "Retreat" -> {
                 System.out.println("HAHAHA! You thought you could just leave? This is where destinies are made, and retreating will never be an option!" +
@@ -248,8 +251,8 @@ class Main {
                 uPlayer.playerInventoryStats();
             }
         }
-
     }
+
 
     private static String directionChoose() {
         String userCDirection = GameControl.strInputValidation(new String[]{"N", "E", "S", "W"}, uPlayer.characterName +
