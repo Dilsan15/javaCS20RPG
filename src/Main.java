@@ -67,8 +67,8 @@ class Main {
             System.out.println("You gain 200 attack!");
             System.out.println("... But you accidentally cut yourself -- losing 150 health!");
 
-            uPlayer.playerInventoryAdd("Attack Sword", 200);
-            uPlayer.damageTaken(150);
+            uPlayer.playerInventoryAdd("Attack Sword", new int[]{200});
+            uPlayer.damageTaken(-150);
             uPlayer.checkLiving();
             uPlayer.playerInventoryStats();
         }
@@ -107,7 +107,7 @@ class Main {
 
 
                         whiteMonster.attackChar(uPlayer, 0);
-                        System.out.println("The White Monster towering over you, and smashes it's paw against you -- dealing immense damage.");
+                        System.out.println("The White Monster towering over you, and smashes it's paw against you -- dealing immense damage!");
                         uPlayer.checkLiving();
 
                     }
