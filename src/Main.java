@@ -224,12 +224,16 @@ class Main {
     /* Dhvanay Solanki:
     1. What does the method do/function: This method's function is to stimulate a FINAL BOSS BATTLE, from the components of an announcer calling  upon the
     "challenge" and the challenger to laying out the actions the player can take (attack, dodge or retreat). This public static void (doesn't return any values)
-     initializes the UserEnemy(Charizard); and uses I/P/O through taking in a string, matching that string to various cases, and for instance, outputting the various levels of combat.
+     initializes the UserEnemy(Charizard); and uses I/P/O through taking in a string, matching that string to various cases, and for instance, outputting the
+     various levels of combat.
     2.Why is it needed? This method is essential as in one variable the code is able to conceptualize all of the finalBossBattle, allowing it to be quickly placed
     into other methods such as our direction-based stories. Furthermore, this would allow user to take different routes but still end up
     at finalBossBattle through one line of code.
     3. Parameters? There aren't any parameters, the method mainly utilizes I/P/O, and ensure that the process works in all scenarios.
-    A small para
+    A small parameter present would be input Validation, where all invalid ints, random strings and a combination of the two are immediately removed, and the prompt
+    is restated.
+    4. Precondition: The input isn't blank and must have the right elements. The string must attach to the cases we have presented, and carry out the method coded.
+    5. Postcondition:
      */
     public static void bossBattle() {
         System.out.println("Dun! Dun! Dun! Welcome to the most thrill you have ever experienced in your life."
