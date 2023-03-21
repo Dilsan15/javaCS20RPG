@@ -121,14 +121,21 @@ class Main {
             String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]),
                     uPlayer.characterName + " which weapon would you like to choose to attack the snake: ");
 
-            System.out.println(enemy.characterName + ", lunges towards you!");
-            enemy.attackChar(uPlayer, 0);
-            uPlayer.checkLiving();
-            System.out.println("");
-            uPlayer.playerInventoryStats();
+            System.out.println(weaponOfChoice);
 
-            uPlayer.attackChar(enemy, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
-            uPlayer.checkLiving();
+            while (enemy.enemyCheckLiving()) {
+
+                System.out.println(enemy.characterName + ", lunges towards you!\n");
+                enemy.attackChar(uPlayer, 0);
+                uPlayer.checkLiving();
+
+                System.out.println(weaponOfChoice);
+
+                uPlayer.attackChar(enemy, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
+                System.out.println("Swinging back, you use " + weaponOfChoice + ".");
+            }
+
+
             System.out.println(uPlayer.characterName + " kills " + enemy.characterName + " with " + weaponOfChoice);
 
 
@@ -211,18 +218,16 @@ class Main {
         System.out.println("Dun! Dun! Dun! Welcome to the most thrill you have ever experienced in your life."
                 + " Now that you've received various attack, health and armor upgrades \n-- let's see if you can make it out of this RPG!");
         System.out.println("Your final challenge is: Charizard from the Pokemon of Oz.");
-        finalBattleOptions();
-    }
-
-        private static void finalBattleOptions() {
         UserEnemy charizardEnemy = new UserEnemy("Charizard", new int[]{0, 820, 0, 200, 0, 16});
         String bossScene = GameControl.strInputValidation(new String[]{"attack", "dodge", "retreat"}, "Player " + uPlayer.characterName + " be careful with your choices, Charizard will seriously burn you. (attack, dodge or retreat)");
         System.out.println(bossScene);
-        switch (bossScene) {
-            case "Attack" -> {
-                while (!charizardEnemy.enemyCheckLiving()) {
-                    String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]), uPlayer.characterName + " Which weapon would you like to choose. ");
-                    System.out.println(weaponOfChoice);
+
+        loop: while (true) {
+            switch (bossScene) {
+                case "attack" -> {
+                    while (!charizardEnemy.enemyCheckLiving()) {
+                        String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]), uPlayer.characterName + " Which weapon would you like to choose. ");
+                        System.out.println(weaponOfChoice);
 
                     uPlayer.attackChar(charizardEnemy, uPlayer.viewPlayerInventory().get(weaponOfChoice)[0]);
                     uPlayer.playerInventoryStats();
@@ -233,25 +238,30 @@ class Main {
                     uPlayer.checkLiving();
                     System.out.println("You only have " + uPlayer.characterHealth + " remaining!");
 
+                    }
+                    break loop;
+                }
+                case "dodge" -> {
+                    System.out.println("Aiming to run from incoming shots, you dive to your left! " +
+                            "Will Charizard be able to adapt?");
+                    charizardEnemy.attackCharDodge(uPlayer, 0);
+                    uPlayer.checkLiving();
+                    uPlayer.playerInventoryStats();
+                }
+                case "retreat" -> {
+                    System.out.println("HAHAHA! You thought you could just leave? This is where destinies are made, and retreating will never be an option!\n" +
+                            "Take your punishment, and be glad I've given you another chance!");
+                    uPlayer.damageTaken(100);
+                    uPlayer.checkLiving();
+                    uPlayer.playerInventoryStats();
                 }
             }
-            case "Dodge" -> {
-                System.out.println("Aiming to run from incoming shots, you dive to your left! " +
-                        "Will Charizard be able to adapt?");
-                charizardEnemy.attackCharDodge(uPlayer, 0);
-                uPlayer.checkLiving();
-                uPlayer.playerInventoryStats();
-                finalBattleOptions();
-            }
-            case "Retreat" -> {
-                System.out.println("HAHAHA! You thought you could just leave? This is where destinies are made, and retreating will never be an option!" +
-                        "Take your punishment, and be glad I've given you another chance!");
-                uPlayer.damageTaken(100);
-                uPlayer.checkLiving();
-                uPlayer.playerInventoryStats();
-            }
+
         }
+
     }
+
+
 
 
     private static String directionChoose() {
