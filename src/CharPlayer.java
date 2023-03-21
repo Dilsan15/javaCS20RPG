@@ -33,6 +33,19 @@ class CharPlayer extends GameControl {
 
     }
 
+    void attackCharDodge(CharPlayer dTarget, int weaponBoost) {
+
+        if (randomNum(0, 5) > 4) {
+            dTarget.damageTaken(this.characterAttack);
+            System.out.println("Direct HIT! They don't call Charizard the boss for nothing!");
+        } else {
+            System.out.println("\n" + this.characterName + " missed their attack on " + dTarget.characterName + "!");
+            System.out.println("There is still hope, I'm not giving up! \n");
+        }
+
+    }
+
+
 
 }
 

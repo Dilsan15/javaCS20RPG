@@ -68,7 +68,7 @@ public class UserPlayer extends CharPlayer {
 
     void checkLiving() {
         if (this.characterHealth <= 0) {
-            System.out.println("💀 Death has landed upon you. We are sending you back -- make wiser choices!");
+            System.out.println("💀 Death has landed upon you. We are sending you back -- make wiser choices!\n");
             Main.main(null);
         }
     }
