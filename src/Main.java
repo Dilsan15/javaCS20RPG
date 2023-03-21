@@ -86,6 +86,13 @@ class Main {
 
         } else {
             bossBattle();
+            System.out.println("Honestly, we didn't think you could do this, but congrats -- we will have to better train Charizard after that.\n" +
+                    "Hope you enjoyed your time in our FantasyWorld, and here is our final gift to you!");
+            System.out.println("         />_________________________________");
+            System.out.println("[########[]_________________________________>");
+            System.out.println("         />");
+            System.out.println("Bestowed upon by the ancient lords, we give you this souvenir to commemorate your success!");
+            return true;
         }
         return false;
     }
@@ -214,6 +221,16 @@ class Main {
 
     }
 
+    /* Dhvanay Solanki:
+    1. What does the method do/function: This method's function is to stimulate a FINAL BOSS BATTLE, from the components of an announcer calling  upon the
+    "challenge" and the challenger to laying out the actions the player can take (attack, dodge or retreat). This public static void (doesn't return any values)
+     initializes the UserEnemy(Charizard); and uses I/P/O through taking in a string, matching that string to various cases, and for instance, outputting the various levels of combat.
+    2.Why is it needed? This method is essential as in one variable the code is able to conceptualize all of the finalBossBattle, allowing it to be quickly placed
+    into other methods such as our direction-based stories. Furthermore, this would allow user to take different routes but still end up
+    at finalBossBattle through one line of code.
+    3. Parameters? There aren't any parameters, the method mainly utilizes I/P/O, and ensure that the process works in all scenarios.
+    A small para
+     */
     public static void bossBattle() {
         System.out.println("Dun! Dun! Dun! Welcome to the most thrill you have ever experienced in your life."
                 + " Now that you've received various attack, health and armor upgrades \n-- let's see if you can make it out of this RPG!");
@@ -225,7 +242,7 @@ class Main {
         loop: while (true) {
             switch (bossScene) {
                 case "attack" -> {
-                    while (!charizardEnemy.enemyCheckLiving()) {
+                    while (charizardEnemy.enemyCheckLiving()) {
                         String weaponOfChoice = GameControl.strInputValidation(uPlayer.viewPlayerInventory().keySet().toArray(new String[0]), uPlayer.characterName + " Which weapon would you like to choose. ");
                         System.out.println(weaponOfChoice);
 
